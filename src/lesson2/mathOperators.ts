@@ -25,10 +25,13 @@ export const pow: ScalarOperationType = (
   second: number
 ): number => first ** second;
 
+export const sqr = (first: number): number => first * first;
+
 export const mathOperators: { [key: string]: ScalarOperationType } = {
   "*": mul,
   "/": div,
   "^": pow,
+  "**": sqr,
   "+": add,
   "-": minus,
 };
@@ -41,6 +44,7 @@ export const mathOperatorsPriorities: { [key: string]: number } = {
   "*": FIRST,
   "/": FIRST,
   "^": FIRST,
+  "**": FIRST,
   "+": SECOND,
   "-": SECOND,
 };

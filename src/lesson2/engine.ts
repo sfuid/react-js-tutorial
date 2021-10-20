@@ -14,16 +14,20 @@ export const firstPrioritiesCalc = (stack: ParsedLineType): ParsedLineType =>
     const item = result[result.length - 1];
 
     if (
-      (!isNumber(String(item)) && mathOperatorsPriorities[item] === FIRST) ||
-      (mathOperatorsPriorities[nextItem] === FIRST && nextItem === "**")
+      (mathOperatorsPriorities[nextItem] === FIRST && nextItem === "**") ||
+      (!isNumber(String(item)) && mathOperatorsPriorities[item] === FIRST)
     ) {
-      if (!mathOperators[item]) {
+      if (!mathOperators[nextItem === "**" ? nextItem : item])
         throw new TypeError("Unexpected stack!");
+
+      if (nextItem === "**") {
+        result = [mathOperators[nextItem](Number(item), Number(item))];
+      } else {
+        result = [
+          ...result.slice(0, -2),
+          mathOperators[item](Number(prevItem), Number(nextItem)),
+        ];
       }
-      result = [
-        ...result.slice(0, -2),
-        mathOperators[item](Number(prevItem), Number(nextItem)),
-      ];
     } else {
       result.push(nextItem);
     }
