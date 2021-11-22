@@ -7,7 +7,7 @@ module.exports = {
   testEnvironment: "jsdom",
   setupFilesAfterEnv: ["<rootDir>/internals/jestSetup.ts"],
   transform: {
-    "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
+    "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/babel-jest",
     "^.+\\.mdx$": "@storybook/addon-docs/jest-transform-mdx",
   },
   moduleNameMapper: {

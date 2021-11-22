@@ -26,8 +26,8 @@ export const Field: FC<FieldProps> = ({ size }) => {
     <FieldComponent onClick={handleClickCell}>
       {Array(size)
         .fill(0)
-        .map((_, i) => (
-          <Cell id={i} isActive={cells.find((cell) => cell === i)} key={i} />
+        .map((_, i: number) => (
+          <Cell id={i} isActive={cells.find((cell: number) => cell === i)} key={i} />
         ))}
     </FieldComponent>
   );

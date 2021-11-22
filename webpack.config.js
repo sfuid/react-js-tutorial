@@ -1,8 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const isProduction = process.env.NODE_ENV == "production";
-
 const config = {
   entry: "./src/index.tsx",
   output: {
@@ -28,7 +26,7 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.(js|ts)x?$/i,
+        test: /\.(ts)x?$/i,
         loader: "babel-loader",
       },
       {
@@ -40,10 +38,5 @@ const config = {
 };
 
 module.exports = () => {
-  if (isProduction) {
-    config.mode = "production";
-  } else {
-    config.mode = "development";
-  }
   return config;
 };
